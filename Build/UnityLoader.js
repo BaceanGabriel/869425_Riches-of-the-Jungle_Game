@@ -139,30 +139,7 @@ var UnityLoader = UnityLoader || {
         })
     },
     instantiate: function(e, t, r) {
-        function n(e, r) {
-            if ("string" == typeof e && !(e = document.getElementById(e))) return !1;
-            e.innerHTML = "", e.style.border = e.style.margin = e.style.padding = 0, "static" == getComputedStyle(e).getPropertyValue("position") && (e.style.position = "relative"), e.style.width = r.width || e.style.width, e.style.height = r.height || e.style.height, r.container = e;
-            var n = r.Module;
-            return n.canvas = document.createElement("canvas"), n.canvas.style.width = "100%", n.canvas.style.height = "100%", n.canvas.addEventListener("contextmenu", function(e) {
-                e.preventDefault()
-            }), n.canvas.id = "#canvas", e.appendChild(n.canvas), r.compatibilityCheck(r, function() {
-                var t = new XMLHttpRequest;
-                t.open("GET", r.url, !0), t.responseType = "text", t.onerror = function() {
-                    n.print("Could not download " + r.url), 0 == document.URL.indexOf("file:") && alert("It seems your browser does not support running Unity WebGL content from file:// urls. Please upload it to an http server, or try a different browser.")
-                }, t.onload = function() {
-                    var o = JSON.parse(t.responseText);
-                    for (var a in o) "undefined" == typeof n[a] && (n[a] = o[a]);
-                    for (var i = !1, s = 0; s < n.graphicsAPI.length; s++) {
-                        var d = n.graphicsAPI[s];
-                        "WebGL 2.0" == d && 2 == UnityLoader.SystemInfo.hasWebGL ? i = !0 : "WebGL 1.0" == d && UnityLoader.SystemInfo.hasWebGL >= 1 ? i = !0 : n.print("Warning: Unsupported graphics API " + d)
-                    }
-                    return i ? (e.style.background = n.backgroundUrl ? "center/cover url('" + n.resolveBuildUrl(n.backgroundUrl) + "')" : n.backgroundColor ? " " + n.backgroundColor : "", r.onProgress(r, 0), void UnityLoader.loadModule(n)) : void r.popup("Your browser does not support any of the required graphics API for this content: " + n.graphicsAPI, [{
-                        text: "OK"
-                    }])
-                }, t.send()
-            }, function() {
-                n.print("Instantiation of the '" + t + "' terminated due to the failed compatibility check.")
-            }), !0
+        t();
         }
         var o = {
             url: t,
